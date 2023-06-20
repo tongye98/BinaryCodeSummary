@@ -1,0 +1,156 @@
+# assembly_cfg_comment
+# robertatokenizer and special
+# tokenizer_trg is None 
+# assembly token = 400
+data:
+    data_path: "datas/dataset_gcc-7.3.0_x86_32_O1_strip"
+    cached_dataset_path: "cached_dataset"
+    train_data_path: "datas/dataset_gcc-7.3.0_x86_32_O1_strip/train_refined.json"
+    valid_data_path: "datas/dataset_gcc-7.3.0_x86_32_O1_strip/valid_refined.json" 
+    test_data_path: "datas/dataset_gcc-7.3.0_x86_32_O1_strip/test_refined.json"
+    use_tokenizer: "robertatokenizer" # sentencepiece or robertatokenizer
+    # sentencepiece_binary_model: "datas/dataset_gcc-7.3.0_x86_64_O1/sentencepiece_binary.model"
+    robertatokenizer: "/zju_yetong/yetong_personal/cache/huggingface/hub/models--Salesforce--codet5-base/snapshots/4078456db09ba972a3532827a0b5df4da172323c/"
+    architecture: "x86_32" # 'x86_64', 'x86_32', 'arm_32'
+
+
+    assembly_token:
+        vocab_min_freq: 1
+        vocab_max_size: 50000
+        token_max_len: 400
+
+    comment:
+        vocab_min_freq: 1
+        vocab_max_size: 50000
+        token_max_len: 40
+
+    cfg_node:
+        vocab_min_freq: 1
+        vocab_max_size: 50000
+    
+    pseudo_token:
+        vocab_min_freq: 1
+        vocab_max_size: 50000
+        token_max_len: 400
+
+training:
+    model_dir: "models/dataset_gcc-7.3.0_x86_32_O1_strip/test10_cszx"
+    overwrite: False
+    load_model: False 
+    random_seed: 980820
+
+    logging_frequence: 100
+    validation_frequence: 1 # after how many epochs
+    store_valid_output: False
+    log_valid_samples: [0,1,2,3,4]
+
+    use_cuda: True 
+    num_workers: 4
+
+    epochs: 100
+    shuffle: True 
+    max_updates: 1000000000
+    batch_size: 32
+
+    learning_rate: 0.0001 
+    learning_rate_min: 1.0e-18
+    # clip_grad_val: 1
+    clip_grad_norm: 5.0
+    optimizer: "adam"
+    weight_decay: 0
+    adam_betas: [0.9, 0.999]
+    eps: 1.e-8
+    early_stop_metric: "bleu"
+    scheduling: "ReduceLROnPlateau"   # "ReduceLROnPlateau", "StepLR", "ExponentialLR", "warmup"
+    mode: "max"
+    factor: 0.8
+    patience: 2
+    step_size: 1
+    gamma: 0.1
+    num_ckpts_keep: 3
+
+    # load_model: "models/dataset_gcc-7.3.0_x86_64_O1/test4_cszx/best.ckpt"
+    reset_best_ckpt: False
+    reset_scheduler: False
+    reset_optimzer: False
+    reset_iteration_state: False
+
+testing: 
+    batch_size: 64
+    batch_type: "sentence"
+    max_output_length: 40
+    min_outptu_length: 1
+    eval_metrics: ["bleu", "rouge-l"]
+    n_best: 1 
+    beam_size: 4
+    beam_alpha: -1
+    return_attention: False
+    return_probability: False
+    generate_unk: False
+    repetition_penalty: -1 
+
+model:
+    mode: "assembly_cfg_pseudo_comment"  # "assembly_comment", "assembly_cfg_comment", "assembly_cfg_pseudo_comment"
+    initializer: "xavier_uniform"
+    embed_initializer: "xavier_uniform"
+    tied_softmax: False 
+    tied_embeddings: False 
+
+    embeddings: 
+        embedding_dim: 512
+        scale: False 
+        freeze: False 
+
+    transformer_encoder:
+        model_dim: 512
+        ff_dim: 2048
+        num_layers: 6
+        head_count: 8
+        dropout: 0.2 
+        emb_dropout: 0.2
+        layer_norm_position: "pre"
+        src_pos_emb: "relative"     # ["absolute", "learnable", "relative"]
+        max_src_len: 0             # for learnable, keep same with data segment
+        freeze: False
+        max_relative_position: 32     # only for relative position, else must be set to 0
+        use_negative_distance: True # for relative position  
+
+    gnn_encoder:
+        gnn_type: "GATConv"        # ["SAGEConv", "GCNConv", "GATConv"]
+        aggr: "mean"                # ["mean", "max", "lstm"]
+        model_dim: 512 
+        num_layers: 2
+        emb_dropout: 0.2 
+        residual: True
+    
+    pseudo_encoder:
+        model_dim: 512
+        ff_dim: 2048
+        num_layers: 6
+        head_count: 8
+        dropout: 0.2 
+        emb_dropout: 0.2
+        layer_norm_position: "pre"
+        src_pos_emb: "relative"     # ["absolute", "learnable", "relative"]
+        max_src_len: 0             # for learnable, keep same with data segment
+        freeze: False
+        max_relative_position: 32     # only for relative position, else must be set to 0
+        use_negative_distance: True # for relative position  
+
+    # pseudo_encoder_codet5:
+    #     model_path: "/zju_yetong/yetong_personal/cache/huggingface/hub/models--Salesforce--codet5-base/snapshots/4078456db09ba972a3532827a0b5df4da172323c/"
+
+    transformer_decoder:
+        model_dim: 512
+        ff_dim: 2048
+        num_layers: 6
+        head_count: 8
+        dropout: 0.2 
+        emb_dropout: 0.2
+        layer_norm_position: "pre"
+        trg_pos_emb: "learnable"     # ["absolute", "learnable", "relative"]
+        max_trg_len: 40              # for learnable, keep same with data segment.
+        freeze: False
+        max_relative_position: 0     # only for relative position, else must be set to 0.
+        use_negative_distance: False # for relative position
+    

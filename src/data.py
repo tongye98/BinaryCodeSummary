@@ -478,7 +478,7 @@ if __name__ == "__main__":
     sh.setLevel(logging.INFO)
     sh.setFormatter(formatter)
     logger.addHandler(sh)
-    logger.info("Hello! This is Tong Ye's Transformer!")
+    logger.info("Hello! This is xxxx's Transformer!")
 
     import yaml
     def load_config(path: Union[Path,str]="configs/xxx.yaml"):

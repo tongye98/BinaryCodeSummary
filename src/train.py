@@ -45,7 +45,7 @@ def make_logger(model_dir:Path, mode:str):
     sh.setFormatter(formatter)
     logger.addHandler(sh)
 
-    logger.info("Hello! This is Tong Ye's Transformer!")
+    logger.info("Hello! This is xxxx's Transformer!")
 
 def set_seed(seed:int) -> None:
     """

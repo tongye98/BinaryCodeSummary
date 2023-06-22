@@ -8,7 +8,7 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = "1"
 device = torch.device("cpu")
 
-path = "/zju_yetong/yetong_personal/cache/huggingface/hub/models--Salesforce--codet5-base/snapshots/4078456db09ba972a3532827a0b5df4da172323c/"
+path = "/xxxxx/xxxx_personal/cache/huggingface/hub/models--Salesforce--codet5-base/snapshots/4078456db09ba972a3532827a0b5df4da172323c/"
 tokenizer = RobertaTokenizer.from_pretrained(path)
 model = T5EncoderModel.from_pretrained(path)
 model.to(device)

@@ -866,7 +866,7 @@ class TransformerEncoder(nn.Module):
         """
         if self.src_pos_emb == "absolute":
             assert False
-        elif self.src_pos_emb == "learnab/zju_yetong/yetong_personal/binarycodesummary/models/dataset_gcc-7.3.0_x86_64_O1_strip/test3_cszxle":
+        elif self.src_pos_emb == "learnab/xxxx/xxxxx_personal/binarycodesummary/models/dataset_gcc-7.3.0_x86_64_O1_strip/test3_cszxle":
             embed_src = self.lpe(embed_src)
         else:
             embed_src = embed_src
@@ -1649,7 +1649,7 @@ if __name__ == "__main__":
     sh.setLevel(logging.DEBUG)
     sh.setFormatter(formatter)
     logger.addHandler(sh)
-    logger.info("Hello! This is Tong Ye's Transformer!")
+    logger.info("Hello! This is xxxx's Transformer!")
 
     import yaml
     from typing import Union 

@@ -552,7 +552,7 @@ class TransformerDecoderLayer(nn.Module):
             output = self.feed_forward(feedforward_input)
             return output, None, None       
 
-        elif mode == "assembly_cfg_pseudo_comment_test9":
+        elif mode == "assembly_cfg_pseudo_comment_test9":  #self→gnn→pseudo→assem
             residual = trg_input
             if self.layer_norm_position == 'pre':
                 trg_input = self.layer_norm(trg_input)
@@ -595,7 +595,7 @@ class TransformerDecoderLayer(nn.Module):
             output = self.feed_forward(feedforward_input)
             return output, None, None        
 
-        elif mode == "assembly_cfg_pseudo_comment_test10":
+        elif mode == "assembly_cfg_pseudo_comment_test10": #self→assem→gnn→pseudo
             residual = trg_input
             if self.layer_norm_position == 'pre':
                 trg_input = self.layer_norm(trg_input)
@@ -638,7 +638,7 @@ class TransformerDecoderLayer(nn.Module):
             output = self.feed_forward(feedforward_input)
             return output, None, None
           
-        elif mode == "assembly_cfg_pseudo_comment_test11":
+        elif mode == "assembly_cfg_pseudo_comment_test11": #self→assem→pseudo→gnn
             residual = trg_input
             if self.layer_norm_position == 'pre':
                 trg_input = self.layer_norm(trg_input)
@@ -681,7 +681,7 @@ class TransformerDecoderLayer(nn.Module):
             output = self.feed_forward(feedforward_input)
             return output, None, None  
                
-        elif mode == "assembly_cfg_pseudo_comment_test12":
+        elif mode == "assembly_cfg_pseudo_comment_test12": #self→pseudo→assem→gnn
             residual = trg_input
             if self.layer_norm_position == 'pre':
                 trg_input = self.layer_norm(trg_input)
@@ -724,7 +724,7 @@ class TransformerDecoderLayer(nn.Module):
             output = self.feed_forward(feedforward_input)
             return output, None, None  
         
-        elif mode == "assembly_cfg_pseudo_comment_test13":
+        elif mode == "assembly_cfg_pseudo_comment_test13": #self→pseudo→gnn→assem
             residual = trg_input
             if self.layer_norm_position == 'pre':
                 trg_input = self.layer_norm(trg_input)

@@ -5,7 +5,7 @@ Official implementation of EMNLP 2023 main conference paper: [CP-BCS: Binary Cod
 ## Abstract 
 Automatically generating function summaries for binaries is an extremely valuable but challenging task, since it involves translating the execution behavior and semantics of the low-level language (assembly code) into human-readable natural language. However, most current works on understanding assembly code are oriented towards generating function names, which involve numerous abbreviations that make them still confusing. To bridge this gap, we focus on generating complete summaries for binary functions, especially for stripped binary (no symbol table and debug information in reality). To fully exploit the semantics of assembly code, we present a control flow graph and pseudo code guided binary code summarization framework called CP-BCS. CP-BCS utilizes a bidirectional instruction-level control flow graph and pseudo code that incorporates expert knowledge to learn the comprehensive binary function execution behavior and logic semantics. We evaluate CP-BCS on 3 different binary optimization levels (O1, O2, and O3) for 3 different computer architectures (X86, X64, and ARM). The evaluation results demonstrate CP-BCS is superior and significantly improves the efficiency of reverse engineering.
 
-![xxx](figs/architecture.png)
+
 
 ## Binary Projects
 
@@ -40,8 +40,10 @@ The list of 51 binary projects and their corresponding versions utilized for con
 | wdiff | 1.2.2 | which | 2.21 |
 | xorriso | 1.4.8 | - | - |
 
-## Datasets
+## Dataset
 The whole dataset encompasses three different computer architectures (X86, X64, and ARM) and three different optimization levels (O1, O2, and O3), culminating in a total of nine unique sub-datasets.
+
+For the dataset, refer to [datas](datas/README.md)
 
 Each item (function) has the following attributes: 
 ```

@@ -5,13 +5,13 @@
 data:
     data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip"
     cached_dataset_path: "cached_dataset"
-    train_data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip/train.json"
-    valid_data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip/valid.json" 
-    test_data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip/test.json"
+    train_data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip/train_refined.json"
+    valid_data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip/valid_refined.json" 
+    test_data_path: "datas/dataset_gcc-7.3.0_x86_64_O3_strip/test_refined.json"
     use_tokenizer: "robertatokenizer" # sentencepiece or robertatokenizer
-    # sentencepiece_binary_model: "datas/dataset_gcc-7.3.0_x86_64_O1/sentencepiece_binary.model"
-    robertatokenizer: "/zju_yetong/yetong_personal/cache/huggingface/hub/models--Salesforce--codet5-base/snapshots/4078456db09ba972a3532827a0b5df4da172323c/"
+    robertatokenizer: "Salesforce/codet5-base"
     architecture: "x86_64" # 'x86_64', 'x86_32', 'arm_32'
+    use_refined_pseudo_code: False
 
     assembly_token:
         vocab_min_freq: 1
@@ -68,7 +68,7 @@ training:
     gamma: 0.1
     num_ckpts_keep: 3
 
-    # load_model: "models/dataset_gcc-7.3.0_x86_64_O1/test4_cszx/best.ckpt"
+    # load_model: "models/best.ckpt"
     reset_best_ckpt: False
     reset_scheduler: False
     reset_optimzer: False

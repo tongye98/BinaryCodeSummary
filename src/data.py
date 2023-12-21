@@ -342,9 +342,10 @@ def load_data(data_cfg: dict):
         tokenizer_src = None  
         tokenizer_trg = None 
 
-    train_data, train_data_truth = read_data_from_file(train_data_path, tokenizer_src, tokenizer_trg, tokenizer_original)
-    valid_data, valid_data_truth = read_data_from_file(valid_data_path, tokenizer_src, tokenizer_trg, tokenizer_original)
-    test_data, test_data_truth = read_data_from_file(test_data_path, tokenizer_src, tokenizer_trg, tokenizer_original)
+    use_refined_pseudo_code = data_cfg.get("use_refined_pseudo_code", False)
+    train_data, train_data_truth = read_data_from_file(train_data_path, tokenizer_src, tokenizer_trg, tokenizer_original, use_refined_pseudo_code)
+    valid_data, valid_data_truth = read_data_from_file(valid_data_path, tokenizer_src, tokenizer_trg, tokenizer_original, use_refined_pseudo_code)
+    test_data, test_data_truth = read_data_from_file(test_data_path, tokenizer_src, tokenizer_trg, tokenizer_original, use_refined_pseudo_code)
 
     assembly_token_vocab, comment_token_vocab, cfg_node_vocab, pseudo_token_vocab = build_vocabulary(data_cfg, [train_data, valid_data])
 

@@ -36,6 +36,25 @@ The list of 51 binary projects and their corresponding versions utilized for con
 | wdiff | 1.2.2 | which | 2.21 |
 | xorriso | 1.4.8 | - | - |
 
+## Datasets
+The whole dataset encompasses three different computer architectures (X86, X64, and ARM) and three different optimization levels (O1, O2, and O3), culminating in a total of nine unique sub-datasets.
+
+Each item (function) has the following attributes: 
+```
+function_name: The name of the function in the source code or the non-stripped binary.
+function_name_in_strip: The name of the function in stripped binary.
+comment: A natural language summary of the function, collected from the corresponding source code.
+function_body: The entire function body, presented in the form of assembly code.
+pseudo_code: Pseudo code for the entire function in the stripped binary.
+cfg: The control flow graph of the function (BI-CFG).
+  node: Each assembly instrunction is a node.
+  edge: The pair formed between adjacent nodes.
+  edge_index: The index of edge.
+pseudo_code_non_strip: Pseudo code for the entire function in the corresponding non-stripped binary.
+pseudo_code_refined: The refined pseudo code using CodeT5.
+```
+
+
 ## Citation
 ```
 @inproceedings{ye-etal-2023-cp,

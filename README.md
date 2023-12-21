@@ -43,7 +43,7 @@ The list of 51 binary projects and their corresponding versions utilized for con
 ## Dataset
 The whole dataset encompasses three different computer architectures (X86, X64, and ARM) and three different optimization levels (O1, O2, and O3), culminating in a total of nine unique sub-datasets.
 
-For the dataset, refer to [datas](datas/README.md)
+For the dataset, refer to [datas](datas/README.md).
 
 Each item (function) has the following attributes: 
 ```
@@ -62,8 +62,15 @@ pseudo_code_refined: The refined pseudo code using CodeT5.
 
 
 ## Environment
+The code is written and tested with the following packages:
+
+- transformers
+- torch 
+- torch-geometric
 
 ## Instructions
+
+
 
 ## Citation
 ```

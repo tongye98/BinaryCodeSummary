@@ -60,6 +60,10 @@ pseudo_code_non_strip: Pseudo code for the entire function in the corresponding 
 pseudo_code_refined: The refined pseudo code using CodeT5.
 ```
 
+### Process Script
+
+We have put the relevant preprocessing scripts for construct the dataset in the [Link](https://drive.google.com/file/d/1H85d_72MjmAsyfxcki8aAImNJ1OtsP7M/view?usp=share_link).
+
 
 ## Environment
 The code is written and tested with the following packages:
